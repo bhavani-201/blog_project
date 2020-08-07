@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+{%extends 'testapp/home.html'%}
+{%block title_block%}Student's Blog Home Page{%endblock%}
+{%block content%}
+<h1>Student's Blog</h1><hr>
+  <h1>{{post.title}}</h1>
+  published on {{post.publish}} by {{post.author|title}}
+    {{post.body|linebreaks}}
+<h2><a href="/{{post.id}}/" class='btn btn-primary btn-lg' target='_blank'>Send Post By Email</a></h2>
+{%endblock%}

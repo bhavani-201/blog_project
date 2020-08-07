@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{%extends 'testapp/home.html'%}
+{%block title_block%}Student's Blog Home Page{%endblock%}
+{%block content%}
+<h1>Student's Blog</h1>
+      {%if tag%}
+      <h2>post tagged with {{tag.name}}</h2>
+      {%endif%}
+{%for post in post_info%}
+  <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
+  <p id="date">published on {{post.publish}} by {{post.author|title}}</p>
+  <p>  Tags:
+    {%for tag in post.tags.all%}
+    <!--{{post.tags.all|join:' ,'}}-->
+     <a href="{%url 'post_list_by_tag_name' tag.slug %}" class='btn btn-primary btn-lg'>{{tag.name}}</a>
+     {%endfor%}
+  </p>
+  {{post.body|truncatewords:15|linebreaks}}
+  {%endfor%}
+  {%include 'testapp/pagination.html' with page1=post_info%}
+{%endblock%}
